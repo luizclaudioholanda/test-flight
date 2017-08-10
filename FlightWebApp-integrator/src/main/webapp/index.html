@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Flight Track</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<script src="js/angular/angular.min.js"></script>
+    <script src="js/flight.js"></script>
+	
+	
+</head>
+<body ng-app="mainApp" class="ng-cloak">
+
+	<div class="container" ng-controller="FlightController" >
+	
+	    <div class="row" style="margin-top: 20px;" >
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Search Flight</h3>
+				</div>
+				<div class="panel-body">
+					
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="pesquisarPor" class="col-sm-2 control-label">Flight Number</label>
+							
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-2 control-label"></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" ng-model="searchValue"
+									placeholder="Search">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="button" class="btn btn-success" ng-click="searchFlight('number', searchValue)" >Search</button>
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</div>
+
+		</div>
+	
+		<div class="row" style="margin-top: 30px;" >
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Flight Track</h3>
+				</div>
+				<div class="panel-body">
+
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>FLIGHT</th>
+								<th>DEPARTURE</th>
+								<th>ARRIVAL</th>
+								<th>STATUS</th>
+								<th>PILOT</th>
+								<th>AIRCRAFT</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="f in flight" >
+								<td>{{f.number}}</td>
+								<td>{{f.from.name}}</td>
+								<td>{{f.to.name}}</td>
+								<td>{{f.status}}</td>
+								<td>{{f.flightPilot.name}}</td>
+								<td>{{f.aircraft.name}}</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+
+		</div>
+	
+	</div>
+
+</body>
+</html>
