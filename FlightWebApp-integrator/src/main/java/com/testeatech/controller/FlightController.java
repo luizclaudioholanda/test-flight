@@ -53,7 +53,13 @@ public class FlightController extends AbstractController<Flight, Long>{
 	@RequestMapping(value = "/getAllByFrom/{from}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Flight> getAllByFrom(@PathVariable("from") String from) {
 
-		return service.findAllByFrom(from);
+		return service.findAllByFrom_Name(from);
+	}
+	
+	@RequestMapping(value = "/getAllByTo/{to}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Flight> getAllByTo(@PathVariable("to") String to) {
+
+		return service.findAllByTo_Name(to);
 	}
 	
 	@RequestMapping(value = "/deleteFlight/{id}", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

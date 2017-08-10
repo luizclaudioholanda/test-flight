@@ -9,7 +9,6 @@ app.controller('FlightController', function($scope, $http) {
         });
     
     $scope.searchFlight = function (searchfield, searchValue) {
-    	console.log(searchfield);
     	
     	var URL = "http://localhost:8000/flight/";
     	
@@ -19,13 +18,28 @@ app.controller('FlightController', function($scope, $http) {
     	else if(searchfield == 'from'){
     		URL = URL + "getAllByFrom/"+searchValue;
     	}
+    	else if(searchfield == 'to'){
+    		URL = URL + "getAllByTo/"+searchValue;
+    	}
     	
     	$http.get(URL).
-        
     	then(function(response) {
             $scope.flight = response.data;
-            console.log(response.data);
+
         });
 
     };
+    
+    $scope.resetSearch = function (){
+    	
+    	$scope.searchfield = '';
+    	$scope.searchValue = '';
+    	
+    	$http.get('http://localhost:8000/flight/getAllByOrderByNumberAsc').
+        then(function(response) {
+            $scope.flight = response.data;
+
+        });
+    };
+    
 });
